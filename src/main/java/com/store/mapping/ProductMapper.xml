@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.store.dao.ProductDao">
+	   <select id="findHot" parameterType="hashmap" resultType="com.store.model.Product">
+	   select * from product where is_hot = ${is_hot}   and  pflag =  ${pflag}  order by  pdate desc  limit 9
+	   </select>
+	   
+	   <select id="findNew" parameterType="hashmap" resultType="com.store.model.Product">
+	 		  select * from product where   pflag =${pflag} order by  pdate desc  limit 9
+	   </select>
+
+
+
+</mapper>
