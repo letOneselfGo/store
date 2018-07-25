@@ -44,7 +44,7 @@ public class UserController {
 	@Autowired
 	HttpSession httpSession;
 	
-	@RequestMapping("active")
+	@RequestMapping("/active")
 	/**
 	 * 用户�?�?
 	 */
@@ -53,13 +53,13 @@ public class UserController {
 		 String code =request.getParameter("code");
 		 User user = userService.active(code);
 		 if(user == null) {
-			  mv.addObject("msg", "�?活失败请重新�?活或者注册！");
+			  mv.addObject("msg", "�激活失败请重新激活或者注册！");
 			  mv.setViewName("jsp/msg");
 		 }
-		 mv.addObject("msg", "恭喜你激活成�?");
+		 mv.addObject("msg", "恭喜你激活成功");
 		return mv;
 	}
-	@RequestMapping("regist")
+	@RequestMapping("/regist")
 	/**
 	 * 用户注册
 	 */
@@ -72,7 +72,7 @@ public class UserController {
 			 user.setCode(UUIDUtils.getCode());
 			 user.setState(Constants.USER_IS_NOT_ACTIVE);
 			 userService.regist(user);
-			 mv.addObject("msg", "恭喜你注册成�?");
+			 mv.addObject("msg", "恭喜你注册成功");
 			 mv.setViewName("jsp/msg");
 			 
 		} catch (Exception e) {
@@ -85,16 +85,11 @@ public class UserController {
 		
 			return mv;
 	}
-	/**
-	 * 用户�?�?
-	 * @return
-	 * @throws IOException
-	 */
 	@RequestMapping("/logout")
-	public String logout() throws IOException{
+	public String logout() {
 		 request.getSession().invalidate();
-			response.sendRedirect(request.getContextPath()+"/index/index");
-		return null;
+
+		 return "/jsp/index";
 	}
 	  /*
 	   * 用户登陆
@@ -109,20 +104,20 @@ public class UserController {
 			 String tcode = ((String) request.getSession().getAttribute("piccode")).toLowerCase();
 			 User user = userService.login(username,password);
 			 if(user == null ){
-				 mv.addObject("msg", "用户名密码错�?");
+				 mv.addObject("msg", "用户名密码错误");
 				  mv.setViewName("jsp/login");
 				  return mv;
 			 }
 			 
 			 if(user.getState() != Constants.USER_IS_ACTIVE) {
-				 mv.addObject("msg", "用户未激�?");
+				 mv.addObject("msg", "用户未激活");
 				 mv.setViewName("jsp/msg");
 				 return mv;
 				 
 			 }
 			 
 			 if(!webCode.equals(tcode )) {
-				 mv.addObject("msg", "驗證碼错�?");
+				 mv.addObject("msg", "验证码错误");
 				  mv.setViewName("jsp/login");
 				  return mv;
 			 }
@@ -132,7 +127,7 @@ public class UserController {
 			response.sendRedirect(request.getContextPath()+"/index/index");
 		} catch (Exception e) {
 			e.printStackTrace();
-			mv.addObject("msg", "用户登录异常�?");
+			mv.addObject("msg", "用户登录异常");
 			 mv.setViewName("jsp/msg");
 			return mv;
 			

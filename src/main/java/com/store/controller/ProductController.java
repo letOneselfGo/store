@@ -17,8 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.store.model.Category;
 import com.store.model.Product;
+import com.store.service.CategoryService;
 import com.store.service.ProductService;
+import com.store.serviceImpl.CategoryServiceImpl;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
@@ -26,7 +29,8 @@ public class ProductController {
 	ProductService productservice;
 	@Autowired
 	HttpServletRequest request;
-
+	@Autowired
+	CategoryService categoryService;
 	@Autowired
 	HttpServletResponse response;
 	
@@ -58,12 +62,15 @@ public class ProductController {
 	
 
 	@RequestMapping("getById")
-	public ModelAndView getById() {
+	public ModelAndView getById() throws Exception {
 		ModelAndView mv= new ModelAndView();
-		String pid = request.getParameter("pid");
+		String pid = request.getParameter("pid"); 
+		Integer cid= productservice.findCid(pid);
+		Category cg = categoryService.findCnameByCid(cid);
 		Product pd =productservice.getById(pid);
 		mv.addObject("bean", pd);
-		mv.setViewName("jsp/product_list");
+		mv.addObject("c", cg);
+		mv.setViewName("jsp/product_info");
 		return mv;
 	}
 

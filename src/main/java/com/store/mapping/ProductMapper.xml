@@ -29,5 +29,9 @@
    	select * from product where pid = #{pid} limit 1
    </select>
    
+  <select id="findCid" resultType="java.lang.Integer">
+    select cid from product where  pid = #{pid} limit 1
+  </select>
+   
 
 </mapper>

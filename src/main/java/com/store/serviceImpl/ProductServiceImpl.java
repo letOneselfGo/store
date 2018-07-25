@@ -10,7 +10,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.store.dao.CategoryDao;
 import com.store.dao.ProductDao;
+import com.store.model.Category;
 import com.store.model.Product;
 import com.store.service.ProductService;
 @Service
@@ -18,6 +20,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Resource
     private ProductDao ProDao;
+
     /**
      * 热门商品查询
      */
@@ -64,5 +67,10 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> selectByList(Map<String, Object> m) {
 		return ProDao.selectByList(m);
+	}
+	@Override
+	public Integer findCid(String pid) {
+
+		return  ProDao.findCid(pid);
 	}
 }

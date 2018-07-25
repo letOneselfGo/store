@@ -36,5 +36,10 @@ public class CategoryServiceImpl implements CategoryService {
 	private List<Category> findList() throws Exception {
 		return categoryDao.findAll();
 	}
+	@Override
+	public Category findCnameByCid(Integer cid) {
+		// TODO Auto-generated method stub
+		return categoryDao.findCnameByCid(cid);
+	}
 
 }

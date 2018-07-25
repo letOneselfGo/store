@@ -7,4 +7,7 @@
 			<select id="findAll" resultType="com.store.model.Category">
 			select * from category
 			</select>
+		 <select id="findCnameByCid" resultType="com.store.model.Category">
+    		select * from category where  cid = #{cid} limit 1
+  		</select>
 </mapper>

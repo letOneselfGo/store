@@ -8,4 +8,7 @@ public interface CategoryDao {
 
 	List<Category> findAll() throws Exception;
 
+
+	Category findCnameByCid(Integer cid);
+
 }

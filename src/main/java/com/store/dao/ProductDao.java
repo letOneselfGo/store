@@ -22,4 +22,6 @@ public interface ProductDao {
 
 	List<Product> selectByList(Map<String, Object> m);
 
+	Integer findCid(String pid);
+
 }

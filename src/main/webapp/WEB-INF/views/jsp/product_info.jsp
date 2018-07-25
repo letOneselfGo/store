@@ -35,9 +35,9 @@
 		<div class="container">
 			<div class="row">
 				<div style="border: 1px solid #e4e4e4;width:930px;margin-bottom:10px;margin:0 auto;padding:10px;margin-bottom:10px;">
-					<a href="./index.htm">首页&nbsp;&nbsp;&gt;</a>
-					<a href="./蔬菜分类.htm">蔬菜&nbsp;&nbsp;&gt;</a>
-					<a>无公害蔬菜</a>
+					<a href="${pageContext.request.contextPath }">首页&nbsp;&nbsp;&gt;</a>
+					<a href="${pageContext.request.contextPath }">>${c.cname}&nbsp;&nbsp;&gt;</a>
+					<a>>${bean.pname}</a>
 				</div>
 
 				<div style="margin:0 auto;width:950px;">
@@ -58,7 +58,7 @@
 
 						<div style="padding:10px;border:1px solid #e7dbb1;width:330px;margin:15px 0 10px 0;;background-color: #fffee6;">
 							<div style="margin:5px 0 10px 0;">白色</div>
-							<form action="${pageContext.request.contextPath }/cart" id="form1" method="get">
+							<form action="${pageContext.request.contextPath }/cart/add2cart" id="form1" method="get">
   							<!-- 提交的方法 -->
   							<input type="hidden" name="method" value="add2cart"> 
   							

@@ -87,10 +87,10 @@
 					</div>
 					<c:forEach items="${hotList }" var="p">
 						<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-							<a href="${pageContext.request.contextPath }/product?method=getById&pid=${p.pid}">
+							<a href="${pageContext.request.contextPath }/product/getById?pid=${p.pid}">
 								<img src="${pageContext.request.contextPath}/${p.pimage}" width="130" height="130" style="display: inline-block;">
 							</a>
-							<p><a href="${pageContext.request.contextPath }/product?method=getById&pid=${p.pid}" style='color:#666'>${fn:substring(p.pname,0,10) }..</a></p>
+							<p><a href="${pageContext.request.contextPath }/product/getById/pid=${p.pid}" style='color:#666'>${fn:substring(p.pname,0,10) }..</a></p>
 							<p><font color="#E4393C" style="font-size:16px">&yen;${p.shop_price }</font></p>
 						</div>
 					</c:forEach>
@@ -125,10 +125,10 @@
 
 					<c:forEach items="${newList }" var="p">
 						<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-							<a href="${pageContext.request.contextPath }/product?method=getById&pid=${p.pid}">
+							<a href="${pageContext.request.contextPath }/product/getById?pid=${p.pid}">
 								<img src="${pageContext.request.contextPath}/${p.pimage}" width="130" height="130" style="display: inline-block;">
 							</a>
-							<p><a href="${pageContext.request.contextPath }/product?method=getById&pid=${p.pid}" style='color:#666'>${fn:substring(p.pname,0,10) }..</a></p>
+							<p><a href="${pageContext.request.contextPath }/product/getById?pid=${p.pid}" style='color:#666'>${fn:substring(p.pname,0,10) }..</a></p>
 							<p><font color="#E4393C" style="font-size:16px">&yen;${p.shop_price }</font></p>
 						</div>
 					</c:forEach>				</div>

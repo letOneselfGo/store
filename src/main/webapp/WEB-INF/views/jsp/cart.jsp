@@ -94,8 +94,8 @@
 					 商品金额: <strong style="color:#ff6600;">￥${cart.total }元</strong>
 				</div>
 				<div style="text-align:right;margin-top:10px;margin-bottom:10px;">
-					<a href="${pageContext.request.contextPath }/cart?method=clear" id="clear" class="clear">清空购物车</a>
-					<a href="${pageContext.request.contextPath }/order?method=save">
+					<a href="${pageContext.request.contextPath }/cart/clear" id="clear" class="clear">清空购物车</a>
+					<a href="${pageContext.request.contextPath }/order/save">
 						<input type="button" width="100" value="提交订单" name="submit" border="0" style="background: url('${pageContext.request.contextPath}/images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
 						height:35px;width:100px;color:white;">
 					</a>
@@ -129,7 +129,7 @@
 	<script type="text/javascript">
 		function removeFromCart(pid){
 			if(confirm("您忍心抛弃我吗?")){
-				location.href="${pageContext.request.contextPath}/cart?method=remove&pid="+pid;
+				location.href="${pageContext.request.contextPath}/cart/remove?pid="+pid;
 			}
 		}
 	</script>

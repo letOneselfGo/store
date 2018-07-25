@@ -23,7 +23,7 @@
 							<li><a href="${pageContext.request.contextPath }/order?method=findMyOrdersByPage&pageNumber=1">我的订单</a></li>
 							<li><a href="${pageContext.request.contextPath }/user/logout">退出</a></li>
 						</c:if>
-						<li><a href="${pageContext.request.contextPath }/jsp/cart.jsp">购物车</a></li>
+						<li><a href="${pageContext.request.contextPath }/cart/cart1">购物车</a></li>
 					</ol>
 				</div>
 			</div>
