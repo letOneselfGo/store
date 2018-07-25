@@ -16,7 +16,7 @@
 					<ol class="list-inline">
 						<c:if test="${empty user }">
 							<li><a href="${pageContext.request.contextPath }/user/loginUI">登录</a></li>
-							<li><a href="${pageContext.request.contextPath }/user?method=registUI">注册</a></li>
+							<li><a href="${pageContext.request.contextPath }/user/registUI">注册</a></li>
 						</c:if>
 						<c:if test="${not empty user }">
 							${user.name }:你好!
@@ -73,7 +73,7 @@
 			//$.each($(obj),function(){});
 			$(obj).each(function(){
 		   
-			$("#c_ul").append("<li><a href='${pageContext.request.contextPath}/product?method=findByPage&pageNumber=1&cid="+this.cid+"'>"+this.cname+"</a></li>");
+			$("#c_ul").append("<li><a href='${pageContext.request.contextPath}/product/findByPage?pageNumber=1&cid="+this.cid+"'>"+this.cname+"</a></li>");
 			});
 		},"json");
 	})

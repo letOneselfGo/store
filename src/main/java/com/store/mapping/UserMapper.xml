@@ -10,5 +10,16 @@
  	
  </select>
 
+<insert id="save">
+    insert into user (uid,username,password,name,email,telephone,birthday,sex,state,code)
+      values (#{uid},#{username},#{password},#{name},#{email},#{telephone},#{birthday},#{sex},#{state},#{code})
+</insert>
 
+<update id="update">
+	update user set  password =#{password} , sex = #{sex}, state = #{state} , code = #{code} where  uid=#{uid}
+</update>
+
+<select id="getByCode" resultType="com.store.model.User">
+	select * from  user where code = #{code}  limit 1
+</select>
 </mapper>

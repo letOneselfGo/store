@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -25,6 +28,7 @@ import com.store.constant.Constants;
 import com.store.model.User;
 import com.store.service.UserService;
 import com.store.util.SessionUtil;
+import com.store.util.UUIDUtils;
 
 @Controller
 @RequestMapping("/user")
@@ -40,8 +44,49 @@ public class UserController {
 	@Autowired
 	HttpSession httpSession;
 	
+	@RequestMapping("active")
 	/**
-	 * 用户退出
+	 * 用户�?�?
+	 */
+	 public ModelAndView active() {
+			 ModelAndView mv = new ModelAndView();
+		 String code =request.getParameter("code");
+		 User user = userService.active(code);
+		 if(user == null) {
+			  mv.addObject("msg", "�?活失败请重新�?活或者注册！");
+			  mv.setViewName("jsp/msg");
+		 }
+		 mv.addObject("msg", "恭喜你激活成�?");
+		return mv;
+	}
+	@RequestMapping("regist")
+	/**
+	 * 用户注册
+	 */
+	public ModelAndView regist() {
+		   ModelAndView mv = new ModelAndView();
+		 try {
+			User user = new User();
+			 BeanUtils.populate(user, request.getParameterMap());
+			 user.setUid(UUIDUtils.getId());
+			 user.setCode(UUIDUtils.getCode());
+			 user.setState(Constants.USER_IS_NOT_ACTIVE);
+			 userService.regist(user);
+			 mv.addObject("msg", "恭喜你注册成�?");
+			 mv.setViewName("jsp/msg");
+			 
+		} catch (Exception e) {
+			e.printStackTrace();
+			 mv.addObject("msg", "用户注册异常");
+			 mv.setViewName("jsp/msg");
+			 return mv;
+		}
+	 
+		
+			return mv;
+	}
+	/**
+	 * 用户�?�?
 	 * @return
 	 * @throws IOException
 	 */
@@ -64,20 +109,20 @@ public class UserController {
 			 String tcode = ((String) request.getSession().getAttribute("piccode")).toLowerCase();
 			 User user = userService.login(username,password);
 			 if(user == null ){
-				 mv.addObject("msg", "用户名密码错误");
+				 mv.addObject("msg", "用户名密码错�?");
 				  mv.setViewName("jsp/login");
 				  return mv;
 			 }
 			 
 			 if(user.getState() != Constants.USER_IS_ACTIVE) {
-				 mv.addObject("msg", "用户未激活");
+				 mv.addObject("msg", "用户未激�?");
 				 mv.setViewName("jsp/msg");
 				 return mv;
 				 
 			 }
 			 
 			 if(!webCode.equals(tcode )) {
-				 mv.addObject("msg", "驗證碼错误");
+				 mv.addObject("msg", "驗證碼错�?");
 				  mv.setViewName("jsp/login");
 				  return mv;
 			 }
@@ -87,7 +132,7 @@ public class UserController {
 			response.sendRedirect(request.getContextPath()+"/index/index");
 		} catch (Exception e) {
 			e.printStackTrace();
-			mv.addObject("msg", "用户登录异常！");
+			mv.addObject("msg", "用户登录异常�?");
 			 mv.setViewName("jsp/msg");
 			return mv;
 			
@@ -105,15 +150,19 @@ public class UserController {
 	  return "/jsp/login";
   }
   
+  @RequestMapping("registUI")
+   public String registUI() {
+	  return "/jsp/register";
+  }
   
    /**
-    * 验证码生成
+    * 验证码生�?
     */
   @RequestMapping(value = "/verifyCode", method = RequestMethod.GET)
   @ResponseBody
   public void VerifyCode() {
 
-      // 创建一个宽100,高50,且不带透明色的image对象 100 50
+      // 创建�?个宽100,�?50,且不带�?�明色的image对象 100 50
       BufferedImage bi = new BufferedImage(100, 30, BufferedImage.TYPE_INT_RGB);
       Graphics g = bi.getGraphics();
       //RGB色彩
@@ -123,7 +172,7 @@ public class UserController {
       // 颜色填充像素
       g.fillRect(0, 0, 100, 30);
 
-      // 定义验证码字符数组
+      // 定义验证码字符数�?
       char[] ch = "ABCDEFGHIJKLMNPQRSTUVWXYZ0123456798".toCharArray();
       Random r = new Random();
       int len = ch.length;
@@ -140,7 +189,7 @@ public class UserController {
           sb.append(ch[index]);
       }
       System.out.println( sb.toString());
-      //放入Session中
+      //放入Session�?
       request.getSession().setAttribute("piccode", sb.toString());
       try {
           ImageIO.write(bi, "JPG", response.getOutputStream());

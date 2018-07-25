@@ -10,10 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.store.service.CategoryService;
-import com.store.service.impl.CategoryServiceImpl;
+
 
 @Controller
 @RequestMapping("/category")
@@ -28,7 +27,7 @@ public class CategoryController {
 	@Autowired
 	HttpServletResponse response;
    /**
-    * 所有商品分类查询
+    * �?有商品分类查�?
     * @return
     * @throws Exception
     */

@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
 <configuration>
-    <settings>
-        <!-- 打印查询语句 -->
-        <setting name="logImpl" value="STDOUT_LOGGING" />
-    </settings>
-     <plugins>
+    <plugins>
         <plugin interceptor="com.github.pagehelper.PageHelper">
             <!--指明数据库 4.0.0以后不需要设置此属性-->
             <property name="dialect" value="mysql"/>

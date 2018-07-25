@@ -1,4 +1,4 @@
-package com.store.service.impl;
+package com.store.serviceImpl;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Resource
 	private CategoryDao categoryDao;
 	/**
-	 * 查询所有商品列表
+	 * 查询�?有商品列�?
 	 */
 
 	public String findAll() throws Exception {

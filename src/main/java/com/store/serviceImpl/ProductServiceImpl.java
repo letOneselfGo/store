@@ -1,4 +1,6 @@
-package com.store.service.impl;
+package com.store.serviceImpl;
+
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
 		return ProDao.findHot( m);
 	}
 	/**
-	 * 最新商品查询
+	 * �?新商品查�?
 	 */
 
 	@Override
@@ -36,5 +38,31 @@ public class ProductServiceImpl implements ProductService {
 		m.put("pflag", 0);
 		return ProDao.findNew(m);
 	}
+	
+	/**
+	 * 分页查询
+	 */
+	
+//	public List<Product> findByPage(String cid) {
+//		int totalRecord =  ProDao.getTotalRecord(cid);
+//		PageBean<Product> pb = new PageBean<>();
+//		Map<String,Object> m = new HashMap<String,Object>();
+//		
+//
+//		return pb;
+//	}
+	@Override
+	public Product getById(String pid) {
+		return ProDao.getById(pid);
+	}
 
+
+	@Override
+	public List<Product> findByPage(Map<String, Object> m) {
+		return ProDao.findByPage(m);
+	}
+	@Override
+	public List<Product> selectByList(Map<String, Object> m) {
+		return ProDao.selectByList(m);
+	}
 }

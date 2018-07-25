@@ -10,6 +10,12 @@ public interface UserDao {
 
 	User getByUsernameAndPwd(Map<String, Object> m);
 
+	void save(User user);
+
+	User getByCode(String code);
+
+	void update(User user);
+
 
 
 

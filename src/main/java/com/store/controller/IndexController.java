@@ -33,7 +33,7 @@ public class IndexController {
 	HttpSession httpSession;
 
 	/*
-	 * 最热商品，最新商品展示
+	 * �?热商品，�?新商品展�?
 	 */
 	@RequestMapping("/index")
 	public ModelAndView index() {

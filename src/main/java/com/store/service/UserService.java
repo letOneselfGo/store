@@ -11,4 +11,8 @@ public interface UserService {
 
 	User login(String username, String password);
 
+	void regist(User user);
+
+	User active(String code);
+
 }

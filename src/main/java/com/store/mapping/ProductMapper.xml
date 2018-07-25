@@ -12,6 +12,22 @@
 	 		  select * from product where   pflag =${pflag} order by  pdate desc  limit 9
 	   </select>
 
-
+   <select id="findByPage"  parameterType="hashmap" resultType="com.store.model.Product">
+	   	select * from product where cid =#{cid} and pflag = 0
+	    order by pdate desc limit #{s},#{end}
+	   
+   </select>
+   
+   <select id="getTotalRecord" resultType="java.lang.Integer">
+   		select count(*) from  product where cid =#{cid} 
+   </select>
+      <select id="selectByList"  parameterType="hashmap" resultType="com.store.model.Product">
+	   	select * from product where cid =#{cid} and pflag = 0 order by pdate desc 
+   </select>
+   
+   <select id="getById" resultType="com.store.model.Product">
+   	select * from product where pid = #{pid} limit 1
+   </select>
+   
 
 </mapper>
