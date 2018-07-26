@@ -89,7 +89,7 @@
 
 			<div>
 				<hr/>
-				<form action="${pageContext.request.contextPath }/order" id="orderForm" method="post" class="form-horizontal" style="margin-top:5px;margin-left:150px;">
+				<form action="${pageContext.request.contextPath }/order/pay" id="orderForm" method="post" class="form-horizontal" style="margin-top:5px;margin-left:150px;">
 					<!-- 提交的方法 -->
 					<input type="hidden" name="method" value="pay">
 					<!-- 订单号 -->

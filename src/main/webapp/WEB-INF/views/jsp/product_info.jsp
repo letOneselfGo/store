@@ -89,7 +89,7 @@
 						<strong>${bean.pdesc}</strong>
 					</div>
 					
-				</div>
+					</div>
 
 			</div>
 		</div>

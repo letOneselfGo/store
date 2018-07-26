@@ -38,7 +38,7 @@ public class ProductController {
 	@Autowired
 	HttpSession httpSession;
 	@RequestMapping("findByPage")
-	public ModelAndView findByPage(@RequestParam(required=true,defaultValue="1") Integer page,HttpServletRequest request,Model model) {
+	public ModelAndView findByPage(@RequestParam(required=true,defaultValue="1") Integer page) {
 		ModelAndView mv= new ModelAndView();
 		try {
 			String cid = request.getParameter("cid");

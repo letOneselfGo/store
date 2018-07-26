@@ -36,12 +36,12 @@
 				<div style="margin:0 auto; margin-top:10px;width:950px;">
 					<strong>我的订单</strong>
 					<table class="table table-bordered">
-						<c:forEach items="${pb.data }" var="o">
+						<c:forEach items="${pb}" var="o">
 							<tbody>
 								<tr class="success">
 									<th colspan="2">订单编号:${o.oid } </th>
 									<th colspan="1">
-										<c:if test="${o.state == 0 }"><a href="${pageContext.request.contextPath }/order?method=getById&oid=${o.oid}">去付款</a></c:if>
+										<c:if test="${o.state == 0 }"><a href="${pageContext.request.contextPath }/order/getById?oid=${o.oid}">去付款</a></c:if>
 										<c:if test="${o.state == 1 }">已付款</c:if>
 										<c:if test="${o.state == 2 }">确认收货</c:if>
 										<c:if test="${o.state == 3 }">已完成</c:if>
@@ -55,7 +55,7 @@
 									<th>数量</th>
 									<th>小计</th>
 								</tr>
-								<c:forEach items="${o.items }" var="oi">
+								<c:forEach items="${o.items}" var="oi">
 									<tr class="active">
 										<td width="60" width="40%">
 											<input type="hidden" name="id" value="22">
@@ -77,13 +77,24 @@
 								</c:forEach>
 							</tbody>
 						</c:forEach>
+	
 						
 					</table>
 				</div>
 			</div>
-			<%@include file="page.jsp" %>
+		
 		</div>
-
+					
+								<div style="width:240px;margin:0 auto;margin-top:50px;">
+			<ul class="pagination" style="text-align:center; margin-top:10px;">
+				
+		<p>第${page.pageNum}页/共${page.pages}页</p>
+        <a href="findMyOrdersByPage?page=1">第一页</a>
+        <a href="findMyOrdersByPage?page=${page.prePage}">上一页</a>
+        <a href="findMyOrdersByPage?page=${page.nextPage}">下一页</a>
+        <a href="findMyOrdersByPage?page=${page.pages}">最后页</a>
+        </ul>
+		</div>
 		<div style="margin-top:50px;">
 			<img src="${pageContext.request.contextPath}/image/footer.jpg" width="100%" height="78" alt="我们的优势" title="我们的优势" />
 		</div>
