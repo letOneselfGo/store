@@ -11,4 +11,7 @@ public interface CategoryDao {
 
 	Category findCnameByCid(Integer cid);
 
+
+	void save(Category c);
+
 }

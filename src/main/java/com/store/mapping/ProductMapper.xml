@@ -18,6 +18,10 @@
 	   
    </select>
    
+   <select id="findAll" resultType="com.store.model.Product">
+   
+   select * from product where pflag = 0 order by pdate desc
+   </select>
    <select id="getTotalRecord" resultType="java.lang.Integer">
    		select count(*) from  product where cid =#{cid} 
    </select>

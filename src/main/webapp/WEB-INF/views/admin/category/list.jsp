@@ -23,7 +23,8 @@
 					</tr>
 					<tr>
 						<td class="ta_01" align="right">
-							<button type="button" id="add" name="add" value="添加" class="button_add" onclick="addCategory()">
+							<button type="button" id="add" name="add" value="添加" class="button_add" 
+							onclick="window.location.href='${pageContext.request.contextPath}/adminCategory/add'">
 &#28155;&#21152;
 </button>
 

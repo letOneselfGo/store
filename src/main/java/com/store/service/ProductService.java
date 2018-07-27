@@ -21,5 +21,7 @@ public interface ProductService {
 
 	Integer findCid(String pid);
 
+	List<Product> findAll();
+
 
 }

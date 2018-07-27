@@ -3,6 +3,8 @@ package com.store.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.store.model.Order;
 import com.store.model.OrderItem;
 import com.store.model.PageBean;
@@ -22,6 +24,8 @@ public interface OrderDao {
 	List<Order> findMyOrdersByPage(Map<String, Object> m);
 
 	List<String> getByuid(String uid);
+
+	List<Order> findAllByState(@Param("state") String state);
 
 
 

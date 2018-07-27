@@ -40,5 +40,16 @@
         select oid from orders where uid =#{uid}
         </select>
     
-
+    
+  	<select id="findAllByState" resultType="com.store.model.Order">
+  	   select * from orders 
+  	    <if test="state == null || state.trim().length()==0">
+  	      order by ordertime desc
+  	    </if>
+  	    <where>
+  	   <if test=" state != null">
+  	      state =#{state} order by ordertime desc
+  	   </if>
+  	   </where>
+  	</select>
 </mapper>

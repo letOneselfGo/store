@@ -19,6 +19,8 @@ public interface OrderService {
 
 	List<String> getByuid(String uid);
 
+	List<Order> findAllByState(String state);
+
 
 
 

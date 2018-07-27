@@ -33,13 +33,19 @@ public class CategoryServiceImpl implements CategoryService {
     * @return
     * @throws Exception
     */
-	private List<Category> findList() throws Exception {
-		return categoryDao.findAll();
-	}
+
 	@Override
 	public Category findCnameByCid(Integer cid) {
 		// TODO Auto-generated method stub
 		return categoryDao.findCnameByCid(cid);
+	}
+	@Override
+	public List<Category> findList() throws Exception {
+	return categoryDao.findAll();
+}
+	@Override
+	public void save(Category c) {
+		categoryDao.save(c);		
 	}
 
 }

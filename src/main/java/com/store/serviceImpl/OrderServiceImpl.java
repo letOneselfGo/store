@@ -73,6 +73,11 @@ public class OrderServiceImpl  implements OrderService{
 		return orderdao.getByuid(uid);
 	}
 
+	@Override
+	public List<Order> findAllByState(String state) {
+		return orderdao.findAllByState(state);
+	}
+
 
 	
 }

@@ -25,15 +25,19 @@
 		d = new dTree('d');
 		d.add('01',-1,'系统菜单树');
 		d.add('0102','01','分类管理','','','mainFrame');
-		d.add('010201','0102','分类列表','${pageContext.request.contextPath}/adminCategory?method=findAll','','mainFrame');
-		d.add('010202','0102','添加分类','${pageContext.request.contextPath}/adminCategory?method=addUI','','mainFrame');
+		d.add('010201','0102','分类列表','${pageContext.request.contextPath}/adminCategory/findAll','','mainFrame');
+		d.add('010202','0102','添加分类','${pageContext.request.contextPath}/adminCategory/add','','mainFrame');
 
 		d.add('0104','01','商品管理');
-		d.add('010401','0104','已上架的商品列表','${pageContext.request.contextPath}/adminProduct?method=findAll','','mainFrame');
-		d.add('010402','0104','添加商品','${pageContext.request.contextPath}/adminProduct?method=addUI','','mainFrame');
+		d.add('010401','0104','已上架的商品列表','${pageContext.request.contextPath}/adminProduct/findAll','','mainFrame');
+		d.add('010402','0104','添加商品','${pageContext.request.contextPath}/adminProduct/add','','mainFrame');
 
 		d.add('0105','01','订单管理'); 
-		d.add('010501','0105','订单管理','${pageContext.request.contextPath}/adminOrder_findAll.action?page=1','','mainFrame');
+		d.add('010501','0105','订单管理','${pageContext.request.contextPath}/adminOrder/findAllByState','','mainFrame');
+		d.add('010502','0105','未付款订单','${pageContext.request.contextPath}/adminOrder/findAllByState?state=0','','mainFrame');
+		d.add('010503','0105','已付款订单','${pageContext.request.contextPath}/adminOrder/findAllByState?state=1','','mainFrame');
+		d.add('010504','0105','已发货订单','${pageContext.request.contextPath}/adminOrder/findAllByState?state=2','','mainFrame');
+		d.add('010505','0105','已完成订单','${pageContext.request.contextPath}/adminOrder/findAllByState?state=3','','mainFrame');
 		document.write(d);
 		
 	</script>

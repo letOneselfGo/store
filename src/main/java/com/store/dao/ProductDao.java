@@ -24,4 +24,6 @@ public interface ProductDao {
 
 	Integer findCid(String pid);
 
+	List<Product> findAll();
+
 }

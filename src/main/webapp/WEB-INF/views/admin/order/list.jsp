@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <HTML>
 	<HEAD>
 		<meta http-equiv="Content-Language" content="zh-cn">
@@ -22,7 +23,7 @@
 						}
 					}
 					// 3.打开连接
-					xhr.open("GET","${pageContext.request.contextPath}/adminOrder_findOrderItem.action?oid="+oid+"&time="+new Date().getTime(),true);
+					xhr.open("GET","${pageContext.request.contextPath}/adminOrder/findOrderItem?oid="+oid+"&time="+new Date().getTime(),true);
 					// 4.发送
 					xhr.send(null);
 					but.value = "关闭";
@@ -91,66 +92,56 @@
 										订单详情
 									</td>
 								</tr>
-									<s:iterator var="o" value="pageBean.list" status="status">
+								<c:forEach items="${list }" var="o" varStatus="status">
 										<tr onmouseover="this.style.backgroundColor = 'white'"
 											onmouseout="this.style.backgroundColor = '#F5FAFE';">
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="18%">
-												<s:property value="#status.count"/>
+												${status.count }
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												<s:property value="#o.oid"/>
+												${o.oid }
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												<s:property value="#o.total"/>
+													${o.total }
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												<s:property value="#o.name"/>
+													${o.name }
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												<s:if test="#o.state==1">
+												<c:if test="${o.state==0}">
 													未付款
-												</s:if>
-												<s:if test="#o.state==2">
-													<a href="${ pageContext.request.contextPath }/adminOrder_updateState.action?oid=<s:property value="#o.oid"/>"><font color="blue">发货</font></a>
-												</s:if>
-												<s:if test="#o.state==3">
+												</c:if>
+												<c:if test="${o.state==1}">
+													去发货
+														<!--  	<a href="${ pageContext.request.contextPath }/adminOrder_updateState.action?oid=<s:property value="#o.oid"/>"><font color="blue">发货</font></a>
+												-->	
+												</c:if>
+												<c:if test="${o.state==2}">
 													等待确认收货
-												</s:if>
-												<s:if test="#o.state==4">
+												</c:if>
+												<c:if test="${o.state==3}">
 													订单完成
-												</s:if>
+												</c:if>
 											
 											</td>
 											<td align="center" style="HEIGHT: 22px">
-												<input type="button" value="订单详情" id="but<s:property value="#o.oid"/>" onclick="showDetail(<s:property value="#o.oid"/>)"/>
-												<div id="div<s:property value="#o.oid"/>">
+												<input type="button" value="订单详情" id="but	${o.oid }" onclick="showDetail(	${o.oid })"/>
+												<div id="div${o.oid }">
 													
 												</div>
 											</td>
 							
 										</tr>
-									</s:iterator>	
+							 </c:forEach>	
 							</table>
 						</td>
 					</tr>
-					<tr align="center">
-						<td colspan="7">
-							第<s:property value="pageBean.page"/>/<s:property value="pageBean.totalPage"/>页 
-							<s:if test="pageBean.page != 1">
-								<a href="${ pageContext.request.contextPath }/adminOrder_findAll.action?page=1">首页</a>|
-								<a href="${ pageContext.request.contextPath }/adminOrder_findAll.action?page=<s:property value="pageBean.page-1"/>">上一页</a>|
-							</s:if>
-							<s:if test="pageBean.page != pageBean.totalPage">
-								<a href="${ pageContext.request.contextPath }/adminOrder_findAll.action?page=<s:property value="pageBean.page+1"/>">下一页</a>|
-								<a href="${ pageContext.request.contextPath }/adminOrder_findAll.action?page=<s:property value="pageBean.totalPage"/>">尾页</a>|
-							</s:if>
-						</td>
-					</tr>
+					
 				</TBODY>
 			</table>
 		</form>

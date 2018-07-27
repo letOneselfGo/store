@@ -10,4 +10,8 @@
 		 <select id="findCnameByCid" resultType="com.store.model.Category">
     		select * from category where  cid = #{cid} limit 1
   		</select>
+  		
+  		<insert id="save">
+  		insert into  category (cid,cname) values (#{cid},#{cname})
+  		</insert>
 </mapper>

@@ -73,4 +73,8 @@ public class ProductServiceImpl implements ProductService {
 
 		return  ProDao.findCid(pid);
 	}
+	@Override
+	public List<Product> findAll() {
+		return ProDao.findAll();
+	}
 }
